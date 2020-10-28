@@ -45,4 +45,8 @@ Q: What profit do you think will have in these 6 months?
 A: With 1% per day will be a maximum of 33 Euro.
 BUT! I hope it will be a medium of 5% per day and I will have 3500 Euro.
 
+Q: Why do you share this project with everyone?
+
+A: Strategy! If a big enough number of traders, throws orders in the same direction at the same time, then it is possible to move the market, in the desired direction, and to make a profit for the long term.
+
 Thank you.
