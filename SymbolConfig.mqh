@@ -127,12 +127,10 @@ SymbolConfig::~SymbolConfig(){}
 //+------------------------------------------------------------------+
 double SymbolConfig::GetLots_DynamicForENC_1_to_300()
 {
-   return 0.01; // for testings.
+   if (AccountInfo.Balance() <= 20.0)
+      return 0.01;
    
-   //if (AccountInfo.Balance() <= 20.0)
-   //   return 0.01;
-   
-   //return NormalizeDouble((AccountInfo.Balance() / 20.0) * 0.01, 2);
+   return NormalizeDouble((AccountInfo.Balance() / 20.0) * 0.01, 2);
 }
 //+------------------------------------------------------------------+
 void SymbolConfig::PrintAllSymbolNames()
