@@ -41,10 +41,10 @@ class TimeClass
       static datetime GetHour23_00(MqlDateTime &timeCurrent, MqlDateTime &time_struct);
       static datetime GetHour23_59(MqlDateTime &timeCurrent, MqlDateTime &time_struct);
       
-      static bool EstePerioadaDeTranzactionare(datetime dtTimeCurrent, MqlDateTime &timeCurrent);
-      static bool EsteIntervalCritic10_12(datetime dtTimeCurrent, MqlDateTime &timeCurrent);
-      static bool EsteIntervalCritic16_18(datetime dtTimeCurrent, MqlDateTime &timeCurrent);
-      static bool EsteIntervalCriticDeTest(datetime dtTimeCurrent, MqlDateTime &timeCurrent);
+      static bool IsTradingPeriod(datetime dtTimeCurrent, MqlDateTime &timeCurrent);
+      static bool IsCriticalInterval10_12(datetime dtTimeCurrent, MqlDateTime &timeCurrent);
+      static bool IsCriticalInterval16_18(datetime dtTimeCurrent, MqlDateTime &timeCurrent);
+      static bool IsCriticalIntervalForTest(datetime dtTimeCurrent, MqlDateTime &timeCurrent);
       
       static void Test();
 };
@@ -190,7 +190,7 @@ static datetime TimeClass::GetHour23_59(MqlDateTime &timeCurrent, MqlDateTime &t
    return TimeClass::GetHour(23, 59, 59, timeCurrent, time_struct);
 }
 //+------------------------------------------------------------------+
-static bool TimeClass::EstePerioadaDeTranzactionare(datetime dtTimeCurrent, MqlDateTime &timeCurrent)
+static bool TimeClass::IsTradingPeriod(datetime dtTimeCurrent, MqlDateTime &timeCurrent)
 {
    MqlDateTime time_struct;
    datetime dtHour01_00 = TimeClass::GetHour01_00(timeCurrent, time_struct);
@@ -203,7 +203,7 @@ static bool TimeClass::EstePerioadaDeTranzactionare(datetime dtTimeCurrent, MqlD
    return false;
 }
 //+------------------------------------------------------------------+
-static bool TimeClass::EsteIntervalCritic10_12(datetime dtTimeCurrent, MqlDateTime &timeCurrent)
+static bool TimeClass::IsCriticalInterval10_12(datetime dtTimeCurrent, MqlDateTime &timeCurrent)
 {
    MqlDateTime time_struct;
    datetime dtHour10_00 = TimeClass::GetHour10_00(timeCurrent, time_struct);
@@ -216,7 +216,7 @@ static bool TimeClass::EsteIntervalCritic10_12(datetime dtTimeCurrent, MqlDateTi
    return false;
 }
 //+------------------------------------------------------------------+
-static bool TimeClass::EsteIntervalCritic16_18(datetime dtTimeCurrent, MqlDateTime &timeCurrent)
+static bool TimeClass::IsCriticalInterval16_18(datetime dtTimeCurrent, MqlDateTime &timeCurrent)
 {
    MqlDateTime time_struct;
    datetime dtHour16_00 = TimeClass::GetHour16_00(timeCurrent, time_struct);
@@ -229,7 +229,7 @@ static bool TimeClass::EsteIntervalCritic16_18(datetime dtTimeCurrent, MqlDateTi
    return false;
 }
 //+------------------------------------------------------------------+
-static bool TimeClass::EsteIntervalCriticDeTest(datetime dtTimeCurrent, MqlDateTime &timeCurrent)
+static bool TimeClass::IsCriticalIntervalForTest(datetime dtTimeCurrent,MqlDateTime &timeCurrent)
 {
    MqlDateTime time_struct;
    datetime dtHourMin = TimeClass::GetHour22_00(timeCurrent, time_struct);
@@ -308,13 +308,13 @@ static void TimeClass::Test()
    dtRes = TimeClass::GetHour23_59(timeCurrent, time_struct);
    Print("GetHour23_59 = " + TimeToString(dtRes, TIME_DATE | TIME_MINUTES | TIME_SECONDS));
    
-   //res = TimeClass::EstePerioadaDeTranzactionare();
-   //Print("EstePerioadaDeTranzactionare = " + (res ? "true" : "false"));
-   //res = TimeClass::EsteIntervalCritic10_12();
-   //Print("EsteIntervalCritic10_12 = " + (res ? "true" : "false"));
-   //res = TimeClass::EsteIntervalCritic16_18();
-   //Print("EsteIntervalCritic16_18 = " + (res ? "true" : "false"));
-   //res = TimeClass::EsteIntervalCriticDeTest();
-   //Print("EsteIntervalCriticDeTest = " + (res ? "true" : "false"));
+   //res = TimeClass::IsTradingPeriod();
+   //Print("IsTradingPeriod = " + (res ? "true" : "false"));
+   //res = TimeClass::IsCriticalInterval10_12();
+   //Print("IsCriticalInterval10_12 = " + (res ? "true" : "false"));
+   //res = TimeClass::IsCriticalInterval16_18();
+   //Print("IsCriticalInterval16_18 = " + (res ? "true" : "false"));
+   //res = TimeClass::IsCriticalIntervalForTest();
+   //Print("IsCriticalIntervalForTest = " + (res ? "true" : "false"));
 }
 //+------------------------------------------------------------------+
