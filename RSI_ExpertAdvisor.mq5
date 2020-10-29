@@ -6,7 +6,7 @@
 #include "MyPositions.mqh"
 #include "TimeClass.mqh"
 //+------------------------------------------------------------------+
-string versionECN = "ROBO 4.21";
+string versionECN = "ROBO 4.23";
 bool executed = false;
 double rsiMaxValue = 97.51;
 double rsiMinValue = 2.37;
@@ -42,7 +42,7 @@ void OnTick()
    MqlDateTime timeCurrent;
    datetime dtTimeCurrent = TimeCurrent(timeCurrent);
    
-   if (!TimeClass::EstePerioadaDeTranzactionare(dtTimeCurrent, timeCurrent)) {
+   if (!TimeClass::IsTradingPeriod(dtTimeCurrent, timeCurrent)) {
       return;
    }
    
