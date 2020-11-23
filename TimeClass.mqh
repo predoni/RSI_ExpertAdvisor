@@ -14,6 +14,9 @@ class TimeClass
       ~TimeClass();
    
    public:
+      static datetime AddOneDay(datetime dt);
+      static datetime GetDateToday(MqlDateTime &dateCurrent);
+      static datetime GetDateTomorrow(MqlDateTime &dateCurrent);
       static datetime GetHour(int hour, int min, int sec, MqlDateTime &timeCurrent, MqlDateTime &time_struct);
       static datetime GetHour00_00(MqlDateTime &timeCurrent, MqlDateTime &time_struct);
       static datetime GetHour01_00(MqlDateTime &timeCurrent, MqlDateTime &time_struct);
@@ -52,6 +55,32 @@ class TimeClass
 TimeClass::TimeClass(){}
 //+------------------------------------------------------------------+
 TimeClass::~TimeClass(){}
+//+------------------------------------------------------------------+
+static datetime TimeClass::AddOneDay(datetime dt)
+{
+   return (dt + (60 /*sec*/ * 60 /*min*/ * 24 /*hours*/)); // Add one day.
+}
+//+------------------------------------------------------------------+
+static datetime TimeClass::GetDateToday(MqlDateTime &dateCurrent)
+{
+   datetime dtCurrent = TimeCurrent(dateCurrent);
+   dateCurrent.hour = 0;
+   dateCurrent.min  = 0;
+   dateCurrent.sec  = 0;
+   
+   return StructToTime(dateCurrent);
+}
+//+------------------------------------------------------------------+
+static datetime TimeClass::GetDateTomorrow(MqlDateTime &dateTomorrow)
+{
+   datetime dtTomorrow = TimeClass::GetDateToday(dateTomorrow);
+   dtTomorrow = TimeClass::AddOneDay(dtTomorrow);
+   
+   if (TimeToStruct(dtTomorrow, dateTomorrow))
+      return dtTomorrow;
+   else
+      return 0;
+}
 //+------------------------------------------------------------------+
 static datetime TimeClass::GetHour(int hour, int min, int sec, MqlDateTime &timeCurrent, MqlDateTime &time_struct)
 {

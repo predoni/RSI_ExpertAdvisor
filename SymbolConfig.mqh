@@ -118,6 +118,7 @@ class SymbolConfig
       trade_Symbol SetXAGUSD(double rsiValue, double spread, datetime dtTimeCurrent, MqlDateTime &timeCurrent);
       trade_Symbol SetXAUUSD(double rsiValue, double spread, datetime dtTimeCurrent, MqlDateTime &timeCurrent);
       
+      trade_Symbol Get(datetime dtTimeCurrent, MqlDateTime &timeCurrent, string symbol);
       trade_Symbol Get(double rsiValue, double spread, datetime dtTimeCurrent, MqlDateTime &timeCurrent, string symbol);
 };
 //+------------------------------------------------------------------+
@@ -127,10 +128,12 @@ SymbolConfig::~SymbolConfig(){}
 //+------------------------------------------------------------------+
 double SymbolConfig::GetLots_DynamicForENC_1_to_300()
 {
-   if (AccountInfo.Balance() <= 20.0)
-      return 0.01;
+   return 0.01; // for testings.
    
-   return NormalizeDouble((AccountInfo.Balance() / 20.0) * 0.01, 2);
+   //if (AccountInfo.Balance() <= 20.0)
+   //   return 0.01;
+   
+   //return NormalizeDouble((AccountInfo.Balance() / 20.0) * 0.01, 2);
 }
 //+------------------------------------------------------------------+
 void SymbolConfig::PrintAllSymbolNames()
@@ -147,15 +150,15 @@ void SymbolConfig::PrintAllSymbolNames()
 double SymbolConfig::GetTakeProfit(double pointValue, double rsiValue, double spread, datetime dtTimeCurrent, MqlDateTime &timeCurrent)
 {
    int points = 14;
-   if (rsiValue >= 85.00) { points = 14; }
-   if (rsiValue >= 90.00) { points = 16; }
-   if (rsiValue >= 95.00) { points = 18; }
-   if (rsiValue >= 96.00) { points = 20; }
+   if (rsiValue >= 98.00) { points = 20; }
+   if (rsiValue >= 96.00) { points = 18; }
+   if (rsiValue >= 94.00) { points = 16; }
+   if (rsiValue >= 90.00) { points = 14; }
    
-   if (rsiValue <=  6.00) { points = 20; }
-   if (rsiValue <=  7.00) { points = 18; }
-   if (rsiValue <=  9.00) { points = 16; }
-   if (rsiValue <= 13.00) { points = 14; }
+   if (rsiValue <=  2.00) { points = 20; }
+   if (rsiValue <=  4.00) { points = 18; }
+   if (rsiValue <=  6.00) { points = 16; }
+   if (rsiValue <= 10.00) { points = 14; }
    
    return pointValue * points;
 }
@@ -187,8 +190,8 @@ double SymbolConfig::GetRSI_High(double rsiValue, double spread, datetime dtTime
    datetime dtHour23_00 = TimeClass::GetHour23_00(timeCurrent, time_struct);
    
    if (dtHour01_00 <= dtTimeCurrent && dtTimeCurrent < dtHour02_00) { return 98.00; }
-   if (dtHour02_00 <= dtTimeCurrent && dtTimeCurrent < dtHour04_00) { return 94.00; }
-   if (dtHour04_00 <= dtTimeCurrent && dtTimeCurrent < dtHour08_00) { return 86.00; }
+   if (dtHour02_00 <= dtTimeCurrent && dtTimeCurrent < dtHour04_00) { return 96.00; }
+   if (dtHour04_00 <= dtTimeCurrent && dtTimeCurrent < dtHour08_00) { return 90.00; }
    if (dtHour08_00 <= dtTimeCurrent && dtTimeCurrent < dtHour10_00) { return 94.00; }
    if (dtHour10_00 <= dtTimeCurrent && dtTimeCurrent < dtHour12_00) { return 98.00; }
    if (dtHour12_00 <= dtTimeCurrent && dtTimeCurrent < dtHour14_00) { return 96.00; }
@@ -197,7 +200,7 @@ double SymbolConfig::GetRSI_High(double rsiValue, double spread, datetime dtTime
    if (dtHour18_00 <= dtTimeCurrent && dtTimeCurrent < dtHour20_00) { return 96.00; }
    if (dtHour20_00 <= dtTimeCurrent && dtTimeCurrent < dtHour23_00) { return 94.00; }
    
-   return 97.00;
+   return 98.00;
 }
 //+------------------------------------------------------------------+
 double SymbolConfig::GetRSI_Low(double rsiValue, double spread, datetime dtTimeCurrent, MqlDateTime &timeCurrent)
@@ -216,18 +219,23 @@ double SymbolConfig::GetRSI_Low(double rsiValue, double spread, datetime dtTimeC
    datetime dtHour22_00 = TimeClass::GetHour22_00(timeCurrent, time_struct);
    datetime dtHour23_00 = TimeClass::GetHour23_00(timeCurrent, time_struct);
    
-   if (dtHour01_00 <= dtTimeCurrent && dtTimeCurrent < dtHour02_00) { return  2.50; }
-   if (dtHour02_00 <= dtTimeCurrent && dtTimeCurrent < dtHour04_00) { return  6.00; }
-   if (dtHour04_00 <= dtTimeCurrent && dtTimeCurrent < dtHour08_00) { return 13.00; }
-   if (dtHour08_00 <= dtTimeCurrent && dtTimeCurrent < dtHour10_00) { return  4.00; }
-   if (dtHour10_00 <= dtTimeCurrent && dtTimeCurrent < dtHour12_00) { return  2.50; }
+   if (dtHour01_00 <= dtTimeCurrent && dtTimeCurrent < dtHour02_00) { return  2.00; }
+   if (dtHour02_00 <= dtTimeCurrent && dtTimeCurrent < dtHour04_00) { return  4.00; }
+   if (dtHour04_00 <= dtTimeCurrent && dtTimeCurrent < dtHour08_00) { return 10.00; }
+   if (dtHour08_00 <= dtTimeCurrent && dtTimeCurrent < dtHour10_00) { return  6.00; }
+   if (dtHour10_00 <= dtTimeCurrent && dtTimeCurrent < dtHour12_00) { return  2.00; }
    if (dtHour12_00 <= dtTimeCurrent && dtTimeCurrent < dtHour14_00) { return  4.00; }
    if (dtHour14_00 <= dtTimeCurrent && dtTimeCurrent < dtHour16_00) { return  4.00; }
-   if (dtHour16_00 <= dtTimeCurrent && dtTimeCurrent < dtHour18_00) { return  2.50; }
+   if (dtHour16_00 <= dtTimeCurrent && dtTimeCurrent < dtHour18_00) { return  2.00; }
    if (dtHour18_00 <= dtTimeCurrent && dtTimeCurrent < dtHour20_00) { return  4.00; }
    if (dtHour20_00 <= dtTimeCurrent && dtTimeCurrent < dtHour23_00) { return  6.00; }
    
-   return 3.00;
+   return 2.00;
+}
+//+------------------------------------------------------------------+
+trade_Symbol SymbolConfig::Get(datetime dtTimeCurrent, MqlDateTime &timeCurrent, string symbol)
+{
+   return Get(0, 0, dtTimeCurrent, timeCurrent, symbol);
 }
 //+------------------------------------------------------------------+
 trade_Symbol SymbolConfig::Get(double rsiValue, double spread, datetime dtTimeCurrent, MqlDateTime &timeCurrent, string symbol)
