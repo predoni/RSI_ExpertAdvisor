@@ -192,13 +192,13 @@ double SymbolConfig::GetRSI_High(double rsiValue, double spread, datetime dtTime
    if (dtHour01_00 <= dtTimeCurrent && dtTimeCurrent < dtHour02_00) { return 98.00; }
    if (dtHour02_00 <= dtTimeCurrent && dtTimeCurrent < dtHour04_00) { return 96.00; }
    if (dtHour04_00 <= dtTimeCurrent && dtTimeCurrent < dtHour08_00) { return 90.00; }
-   if (dtHour08_00 <= dtTimeCurrent && dtTimeCurrent < dtHour10_00) { return 94.00; }
+   if (dtHour08_00 <= dtTimeCurrent && dtTimeCurrent < dtHour10_00) { return 96.00; }
    if (dtHour10_00 <= dtTimeCurrent && dtTimeCurrent < dtHour12_00) { return 98.00; }
    if (dtHour12_00 <= dtTimeCurrent && dtTimeCurrent < dtHour14_00) { return 96.00; }
    if (dtHour14_00 <= dtTimeCurrent && dtTimeCurrent < dtHour16_00) { return 96.00; }
    if (dtHour16_00 <= dtTimeCurrent && dtTimeCurrent < dtHour18_00) { return 98.00; }
    if (dtHour18_00 <= dtTimeCurrent && dtTimeCurrent < dtHour20_00) { return 96.00; }
-   if (dtHour20_00 <= dtTimeCurrent && dtTimeCurrent < dtHour23_00) { return 94.00; }
+   if (dtHour20_00 <= dtTimeCurrent && dtTimeCurrent < dtHour23_00) { return 95.00; }
    
    return 98.00;
 }
@@ -222,13 +222,13 @@ double SymbolConfig::GetRSI_Low(double rsiValue, double spread, datetime dtTimeC
    if (dtHour01_00 <= dtTimeCurrent && dtTimeCurrent < dtHour02_00) { return  2.00; }
    if (dtHour02_00 <= dtTimeCurrent && dtTimeCurrent < dtHour04_00) { return  4.00; }
    if (dtHour04_00 <= dtTimeCurrent && dtTimeCurrent < dtHour08_00) { return 10.00; }
-   if (dtHour08_00 <= dtTimeCurrent && dtTimeCurrent < dtHour10_00) { return  6.00; }
+   if (dtHour08_00 <= dtTimeCurrent && dtTimeCurrent < dtHour10_00) { return  4.00; }
    if (dtHour10_00 <= dtTimeCurrent && dtTimeCurrent < dtHour12_00) { return  2.00; }
    if (dtHour12_00 <= dtTimeCurrent && dtTimeCurrent < dtHour14_00) { return  4.00; }
    if (dtHour14_00 <= dtTimeCurrent && dtTimeCurrent < dtHour16_00) { return  4.00; }
    if (dtHour16_00 <= dtTimeCurrent && dtTimeCurrent < dtHour18_00) { return  2.00; }
    if (dtHour18_00 <= dtTimeCurrent && dtTimeCurrent < dtHour20_00) { return  4.00; }
-   if (dtHour20_00 <= dtTimeCurrent && dtTimeCurrent < dtHour23_00) { return  6.00; }
+   if (dtHour20_00 <= dtTimeCurrent && dtTimeCurrent < dtHour23_00) { return  5.00; }
    
    return 2.00;
 }

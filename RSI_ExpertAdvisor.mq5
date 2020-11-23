@@ -7,7 +7,7 @@
 #include "MyPositions.mqh"
 #include "TimeClass.mqh"
 //+------------------------------------------------------------------+
-string versionECN = "ROBO 4.34";
+string versionECN = "ROBO 4.35";
 bool   executed = false;
 double rsiMaxValue = 98.00;
 double rsiMinValue = 2.37;
